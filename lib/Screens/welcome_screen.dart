@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:tripdash/Screens/AdminScreen/admin_dashboard.dart';
 import 'package:tripdash/Screens/SplashScreen/splash_screen1.dart';
@@ -46,10 +45,10 @@ class _SplashScreenState extends State<SplashScreen> {
             }
           }
           NotificationService.display(
-                    title: "Hello ${_auth.loggedInUser!.name!}!",
-                    body: "Welcome to TripDash",
-                    image: "assets/images/logo.png",
-                    logo: "assets/images/logo.png");
+              title: "Hello ${_auth.loggedInUser!.name!}!",
+              body: "Welcome to TripDash",
+              image: "assets/images/logo.png",
+              logo: "assets/images/logo.png");
         });
       });
     });
@@ -72,7 +71,7 @@ class _SplashScreenState extends State<SplashScreen> {
               decoration: const BoxDecoration(
                   image: DecorationImage(
                       image: AssetImage('Assets/images/logo.png'))),
-              child: Lottie.asset('Assets/images/lottie2.json'),
+              // child: Lottie.asset('Assets/images/lottie2.json'),
             ),
             Text(
               'TripDash',

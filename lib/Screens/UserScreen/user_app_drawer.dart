@@ -1,12 +1,13 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:tripdash/Screens/HotelViewScreen/tour_home_screen.dart';
 import 'package:tripdash/Screens/UserScreen/Event/calender.dart';
 import 'package:tripdash/Screens/UserScreen/Event/view_events.dart';
 import 'package:tripdash/Screens/UserScreen/TripPlan/trip_plan_overview.dart';
-import 'package:intl/intl.dart';
-import 'dart:async';
-import 'package:tripdash/Screens/HotelViewScreen/hotel_home_screen.dart';
 import 'package:tripdash/Screens/UserScreen/ViewProducts/view_products.dart';
 import 'package:tripdash/Screens/ViewPlaceScreen/place_screen.dart';
 
@@ -29,8 +30,9 @@ class _UserAppDrawerState extends State<UserAppDrawer> {
   void initState() {
     super.initState();
     fetchData();
-     _startTimer();
+    _startTimer();
   }
+
   @override
   void dispose() {
     _timer.cancel();
@@ -40,8 +42,7 @@ class _UserAppDrawerState extends State<UserAppDrawer> {
   void _startTimer() {
     _timer = Timer.periodic(const Duration(seconds: 1), (Timer timer) {
       setState(() {
-        formattedDateTime =
-            DateFormat('yyyy-MM-dd ').format(DateTime.now());
+        formattedDateTime = DateFormat('yyyy-MM-dd ').format(DateTime.now());
       });
     });
   }
@@ -71,55 +72,56 @@ class _UserAppDrawerState extends State<UserAppDrawer> {
     DateTime now = DateTime.now();
     String formattedDate = DateFormat('yyyy-MM-dd').format(now);
     var userAccountsDrawerHeader = UserAccountsDrawerHeader(
-          currentAccountPicture: Padding(
-            padding: const EdgeInsets.all(1.0),
-            child: CircleAvatar(
-              child: ClipOval(
-                child: Image.asset(avatar==''?'Assets/avatars/av_1.png':avatar,
-                  width: 80,
-                  height: 80,
-                  fit: BoxFit.cover,),
-              ),
+      currentAccountPicture: Padding(
+        padding: const EdgeInsets.all(1.0),
+        child: CircleAvatar(
+          child: ClipOval(
+            child: Image.asset(
+              avatar == '' ? 'Assets/avatars/av_1.png' : avatar,
+              width: 80,
+              height: 80,
+              fit: BoxFit.cover,
             ),
           ),
-          accountName: Padding(
-            padding: const EdgeInsets.only(top: 30),
-            child: Text(
-              name,
-              style: const TextStyle(
-                color: Colors.black,
-                fontSize: 16,
-              ),
+        ),
+      ),
+      accountName: Padding(
+        padding: const EdgeInsets.only(top: 30),
+        child: Text(
+          name,
+          style: const TextStyle(
+            color: Colors.black,
+            fontSize: 16,
+          ),
+        ),
+      ),
+      accountEmail: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            email,
+            style: const TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+              fontSize: 14,
             ),
           ),
-          accountEmail: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                email,
-                style: const TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 14,
-                ),
-              ),
-              Text(
-                    formattedDate,
-                    style: const TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 14,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-            ],
+          Text(
+            formattedDate,
+            style: const TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+              fontSize: 14,
+            ),
           ),
-          decoration:  BoxDecoration(
-          
-            borderRadius: BorderRadius.circular(8),
-            color: const Color(0xFFFBDACE),
-          ),
-        );
+          const SizedBox(height: 4),
+        ],
+      ),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8),
+        color: const Color(0xFFFBDACE),
+      ),
+    );
     return Drawer(
       child: ListView(
         children: [
@@ -131,16 +133,14 @@ class _UserAppDrawerState extends State<UserAppDrawer> {
                 Navigator.pushNamed(context, PlaceHomeScreen.routeName),
           ),
           ListTile(
-            leading: const Icon(Icons.hotel_outlined),
-            title: const Text("Hotels"),
-            onTap: () =>
-                Navigator.pushNamed(context, HotelHomeScreen.routeName),
+            leading: const Icon(Icons.car_rental),
+            title: const Text("Rent Car"),
+            onTap: () => Navigator.pushNamed(context, TourHomeScreen.routeName),
           ),
           ListTile(
             leading: const Icon(Icons.event_note_outlined),
-            title: const Text("Events"),
-            onTap: () => Navigator.pushNamed(
-                context, ViewEvents.routeName),
+            title: const Text("Blog"),
+            onTap: () => Navigator.pushNamed(context, ViewEvents.routeName),
           ),
           ListTile(
             leading: const Icon(Icons.add_circle_outline),
@@ -156,8 +156,18 @@ class _UserAppDrawerState extends State<UserAppDrawer> {
           ListTile(
             leading: const Icon(Icons.calendar_month),
             title: const Text("Calender"),
-            onTap: () => Navigator.pushNamed(
-                context, Calender.routeName),
+            onTap: () => Navigator.pushNamed(context, Calender.routeName),
+          ),
+          ListTile(
+            leading: const Icon(Icons.tour),
+            title: const Text(" Gear Rent"),
+            onTap: () => Navigator.pushNamed(context, '/CostumizedTour'),
+          ),
+          ListTile(
+            leading: const Icon(Icons.add_circle_outline),
+            title: const Text("Personalize Package"),
+            onTap: () =>
+                Navigator.pushNamed(context, '/CostomizePackageScreens'),
           ),
           ListTile(
             leading: const Icon(Icons.exit_to_app_outlined),
@@ -169,4 +179,3 @@ class _UserAppDrawerState extends State<UserAppDrawer> {
     );
   }
 }
-

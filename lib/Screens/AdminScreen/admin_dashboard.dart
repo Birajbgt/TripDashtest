@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:tripdash/Screens/AdminScreen/CustomerDetail/customer_detail.dart';
 import 'package:tripdash/Screens/AdminScreen/admin_app_drawer.dart';
 import 'package:tripdash/Screens/AdminScreen/admin_booking.dart';
-import 'package:tripdash/Screens/HotelViewScreen/hotel_home_screen.dart';
+import 'package:tripdash/Screens/HotelViewScreen/tour_home_screen.dart';
 import 'package:tripdash/Screens/UserScreen/Event/view_events.dart';
 import 'package:tripdash/Screens/UserScreen/Profile/user_profile.dart';
 import 'package:tripdash/Screens/UserScreen/ViewProducts/view_products.dart';
@@ -12,7 +12,6 @@ import 'package:tripdash/Screens/ViewPlaceScreen/place_screen.dart';
 import 'package:tripdash/constant/colors.dart';
 import 'package:tripdash/widget/Search/app_bar_search.dart';
 import 'package:tripdash/widget/text_style.dart';
-
 
 class AdminDashboard extends StatefulWidget {
   const AdminDashboard({super.key});
@@ -26,10 +25,10 @@ class _AdminDashboardState extends State<AdminDashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: const AdminAppDrawer(),
-      appBar:const PreferredSize(
-    preferredSize: Size.fromHeight(50), // Change the height as desired
-    child: AppBarWidget(avatar: 'Assets/avatars/av_1.png'),
-    ),
+      appBar: const PreferredSize(
+        preferredSize: Size.fromHeight(50), // Change the height as desired
+        child: AppBarWidget(avatar: 'Assets/avatars/av_1.png'),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: const Color(0x51289a8e),
         selectedItemColor: Colors.red,
@@ -51,7 +50,6 @@ class _AdminDashboardState extends State<AdminDashboard> {
             backgroundColor: ConstColors.whiteColor,
           ),
         ],
-
         onTap: (index) {
           if (index == 0) {
             Navigator.pushNamed(context, AdminDashboard.routeName);
@@ -65,7 +63,7 @@ class _AdminDashboardState extends State<AdminDashboard> {
         },
       ),
       body: SafeArea(
-        child:SingleChildScrollView(
+        child: SingleChildScrollView(
           child: Container(
             color: ConstColors.whiteColor,
             child: Column(
@@ -73,19 +71,21 @@ class _AdminDashboardState extends State<AdminDashboard> {
                 Container(
                   alignment: Alignment.center,
                   margin: const EdgeInsets.only(left: 0),
-                  child: Text("Admin Panel",
-                  style: GoogleFonts.poppins(
-                    fontSize: 28,
-                    fontWeight: FontWeight.w700,
-                    color: Colors.green,
+                  child: Text(
+                    "Admin Panel",
+                    style: GoogleFonts.poppins(
+                      fontSize: 28,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.green,
+                    ),
                   ),
                 ),
+                const SizedBox(
+                  height: 8,
                 ),
-                const SizedBox(height: 8,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-
                     //total booking container
                     GestureDetector(
                       onTap: () {
@@ -142,16 +142,17 @@ class _AdminDashboardState extends State<AdminDashboard> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 20,),
+                const SizedBox(
+                  height: 20,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-
                     //hotel container
                     GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(context, HotelHomeScreen.routeName);
+                        Navigator.pushNamed(context, TourHomeScreen.routeName);
                       },
                       child: Container(
                         height: 90,
@@ -208,7 +209,7 @@ class _AdminDashboardState extends State<AdminDashboard> {
                     Navigator.pushNamed(context, PlaceHomeScreen.routeName);
                   },
                   child: Container(
-                    margin: const EdgeInsets.all( 18),
+                    margin: const EdgeInsets.all(18),
                     height: 200,
                     width: double.infinity,
                     decoration: BoxDecoration(
@@ -218,8 +219,11 @@ class _AdminDashboardState extends State<AdminDashboard> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Image.asset("Assets/icons/placeLogo.jpg",height: 150,
-                        width: 220,),
+                        Image.asset(
+                          "Assets/icons/placeLogo.jpg",
+                          height: 150,
+                          width: 220,
+                        ),
                         Text(
                           "Places",
                           style: GoogleFonts.poppins(
@@ -241,7 +245,8 @@ class _AdminDashboardState extends State<AdminDashboard> {
                     Navigator.pushNamed(context, ViewProducts.routeName);
                   },
                   child: Container(
-                    margin: const EdgeInsets.only( left: 18, right: 18, bottom: 6),
+                    margin:
+                        const EdgeInsets.only(left: 18, right: 18, bottom: 6),
                     height: 200,
                     width: double.infinity,
                     decoration: BoxDecoration(
@@ -251,8 +256,11 @@ class _AdminDashboardState extends State<AdminDashboard> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Image.asset("Assets/icons/productsL.jpg",height: 150,
-                        width: 210,),
+                        Image.asset(
+                          "Assets/icons/productsL.jpg",
+                          height: 150,
+                          width: 210,
+                        ),
                         Text(
                           "Products",
                           style: GoogleFonts.poppins(
@@ -273,7 +281,8 @@ class _AdminDashboardState extends State<AdminDashboard> {
                     Navigator.pushNamed(context, ViewEvents.routeName);
                   },
                   child: Container(
-                    margin: const EdgeInsets.only( left: 18, right: 18, bottom: 6,top: 12),
+                    margin: const EdgeInsets.only(
+                        left: 18, right: 18, bottom: 6, top: 12),
                     height: 200,
                     width: double.infinity,
                     decoration: BoxDecoration(
@@ -283,8 +292,11 @@ class _AdminDashboardState extends State<AdminDashboard> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Image.asset("Assets/icons/events.jpg",height: 150,
-                        width: 210,),
+                        Image.asset(
+                          "Assets/icons/events.jpg",
+                          height: 150,
+                          width: 210,
+                        ),
                         Text(
                           "Events",
                           style: GoogleFonts.poppins(
@@ -299,7 +311,6 @@ class _AdminDashboardState extends State<AdminDashboard> {
                     ),
                   ),
                 ),
-
               ],
             ),
           ),
